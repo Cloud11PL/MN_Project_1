@@ -11,7 +11,6 @@ public class MotherClass {
 
     private double v = -150;
     private double h = 50000;
-    private double gravity = -1.63;
     private double massFuel0 = 1730.14;
     private double fuelBurn0 = 0;
     private double m = massFuel0 + 1000;
