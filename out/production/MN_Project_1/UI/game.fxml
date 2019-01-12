@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #292929;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller">
+   <children>
+      <Pane prefWidth="600.0" style="-fx-background-color: #292929;">
+         <children>
+            <Text fill="WHITE" layoutX="43.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Odyssey">
+               <font>
+                  <Font name="OCR A Extended" size="49.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane prefHeight="600.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="scrollImage" fitHeight="160.0" fitWidth="460.0" pickOnBounds="true">
+               <image>
+                  <Image url="@assets/scroll.png" />
+               </image>
+            </ImageView>
+         </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </Pane>
+   </children>
+</VBox>
