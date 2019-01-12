@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -19,17 +22,27 @@
             </Text>
          </children>
       </Pane>
-      <Pane prefHeight="600.0" prefWidth="200.0">
+      <Pane prefHeight="600.0" prefWidth="500.0">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
          <children>
-            <ImageView fx:id="scrollImage" fitHeight="160.0" fitWidth="460.0" pickOnBounds="true">
+            <Button fx:id="wypierdol" layoutX="34.0" layoutY="151.0" mnemonicParsing="false" onAction="#wyjeb" text="Button" />
+            <Button fx:id="startScroll" layoutX="154.0" layoutY="151.0" mnemonicParsing="false" onAction="#fuckingjava" text="Button" />
+            <Button fx:id="btn5" layoutX="250.0" layoutY="151.0" mnemonicParsing="false" onAction="#changeTo5" text="-5" />
+            <Button fx:id="btn10" layoutX="289.0" layoutY="151.0" mnemonicParsing="false" onAction="#changeTo10" text="-10" />
+            <Button fx:id="btn15" layoutX="335.0" layoutY="151.0" mnemonicParsing="false" onAction="#changeTo15" text="-15" />
+            <Button fx:id="btn0" layoutX="379.0" layoutY="151.0" mnemonicParsing="false" onAction="#changeTo0" text="0" />
+         </children>
+      </Pane>
+      <ScrollPane fx:id="scrollPane" prefHeight="900.0" prefWidth="500.0">
+         <content>
+            <ImageView fx:id="scrollImage" fitHeight="2850.0" fitWidth="460.0" pickOnBounds="true">
                <image>
                   <Image url="@assets/scroll.png" />
                </image>
             </ImageView>
-         </children>
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </Pane>
+         </content>
+      </ScrollPane>
    </children>
 </VBox>
