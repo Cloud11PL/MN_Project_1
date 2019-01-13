@@ -4,10 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /*
 --module-path "C:\Users\Wojciech\Documents\javafx-sdk-11.0.1\lib" --add-modules=javafx.controls,javafx.fxml,javafx.base,javafx.media,javafx.graphics,javafx.swing,javafx.web --add-exports=javafx.base/com.sun.javafx.event=ALL-UNNAMED
@@ -20,26 +16,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.JavaFXBuilderFactory;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 
 public class Controller {
@@ -68,6 +50,7 @@ public class Controller {
     double velScrollNext = 0;
     double velScrollFinal = 0;
     double blowJob = 0;
+    MotherClass mc = new MotherClass();
 
     @FXML
     private Button btn5;
@@ -101,6 +84,27 @@ public class Controller {
     @FXML
     void changeTo5(ActionEvent event) {
         blowJob = -5;
+
+    }
+
+    @FXML
+    private void keyPressed(KeyEvent keyEvent) {
+        if(blowJob <=0 &&blowJob >=- 16.5) {
+            switch (keyEvent.getCode()) {
+                case D:
+                    blowJob += -0.5;
+                    break;
+                case A:
+                    blowJob -= -0.5;
+                    break;
+            }
+            if(blowJob >0){
+                blowJob =0;
+            }
+            if (blowJob < -16.5){
+                blowJob = -16.5;
+            }
+        }
 
     }
 
@@ -140,11 +144,12 @@ public class Controller {
     @FXML
     void fuckingjava(ActionEvent event) {
         ArrayClass ac = new ArrayClass();
-        MotherClass mc = new MotherClass();
+
         TimerTask task = new TimerTask() {
             public void run() {
-                System.out.println("XD");
+                //System.out.println("XD");
                 mc.doImportantStuff(blowJob, ac);
+                System.out.println(blowJob);
                 /*
                 Potrzeba nowej i wcześniejszej bo skacze w chuj
                  */
@@ -163,9 +168,9 @@ public class Controller {
                     index++;
                 } else {
                     velScroll = (double) ac.getVelocityList().get(index) * -0.0022;
-                    System.out.println("VelScroll " + velScroll);
+                    //System.out.println("VelScroll " + velScroll);
                     velScrollNext = (double) ac.getVelocityList().get(index - 1) * -0.0022;
-                    System.out.println("VelScroll " + velScrollNext);
+                    //System.out.println("VelScroll " + velScrollNext);
                     velScrollFinal += velScroll - velScrollNext;
                     index++;
                 }
@@ -177,13 +182,19 @@ public class Controller {
                             //timeline.setCycleCount(Animation.INDEFINITE);
                             //scroll += scrollAddLow;
                             System.out.println(velScrollFinal);
+                    if(velScrollFinal >= 1){
+                        timeline.stop();
+                        System.out.println("you did it you sick fuck");
+                    }
                             timeline.play();
+
                         }
                 );
             }
         };
 
         timer.scheduleAtFixedRate(task, 100, 100);
+
 
     }
 }
