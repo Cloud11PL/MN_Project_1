@@ -36,7 +36,7 @@
       </Pane>
       <ScrollPane fx:id="scrollPane" prefHeight="900.0" prefWidth="500.0">
          <content>
-            <ImageView fx:id="scrollImage" fitHeight="2850.0" fitWidth="460.0" pickOnBounds="true">
+            <ImageView fx:id="scrollImage" fitHeight="3125.0" fitWidth="500.0" pickOnBounds="true">
                <image>
                   <Image url="@assets/scroll.png" />
                </image>

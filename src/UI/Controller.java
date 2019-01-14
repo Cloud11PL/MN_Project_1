@@ -26,22 +26,6 @@ import javafx.util.Duration;
 
 public class Controller {
 
-
-    private int x = 5;
-    private Animation animation;
-    private double scrollAddHigh = 0.1;
-    private double scrollAddLow = 0.001;
-    private double scroll = scrollAddLow + 0;
-    private Timeline timeline;
-
-    private final Timer timer = new Timer();
-    private int index = 0;
-    private double velScroll = 0;
-    private double velScrollNext = 0;
-    private double velScrollFinal = 0;
-    private double blowJob = 0;
-    private MotherClass mc = new MotherClass();
-
     @FXML
     private ResourceBundle resources;
 
@@ -53,6 +37,21 @@ public class Controller {
 
     @FXML
     private ScrollPane scrollPane;
+
+    int x = 5;
+    Animation animation;
+    double scrollAddHigh = 0.1;
+    double scrollAddLow = 0.001;
+    double scroll = scrollAddLow + 0;
+    Timeline timeline;
+    final Timer timer = new Timer();
+    int index = 0;
+    double velScroll = 0;
+    double velScrollNext = 0;
+    double velScrollFinal = 0;
+    double blowJob = 0;
+    MotherClass mc = new MotherClass();
+
     @FXML
     private Button btn5;
 
@@ -121,11 +120,11 @@ public class Controller {
     @FXML
     void initialize() {
         assert scrollImage != null : "fx:id=\"scrollImage\" was not injected: check your FXML file 'game.fxml'.";
-        assert scrollPane  != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'game.fxml'.";
-        /*
+        assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'game.fxml'.";
+
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        */
+
         scrollPane.setBorder(null);
 
 
@@ -149,8 +148,12 @@ public class Controller {
         TimerTask task = new TimerTask() {
             public void run() {
                 //System.out.println("XD");
+
+
                 mc.doImportantStuff(blowJob, ac);
                 System.out.println(blowJob);
+
+
                 /*
                 Potrzeba nowej i wcześniejszej bo skacze w chuj
                  */
@@ -168,29 +171,34 @@ public class Controller {
                     velScrollFinal = 0;
                     index++;
                 } else {
-                    velScroll = (double) ac.getVelocityList().get(index) * -0.0022;
+                    velScroll = (double) ac.getHeightList().get(index) * -2e-5;
+                    //velScroll = (double) ac.getVelocityList().get(index) * -0.0022;
                     //System.out.println("VelScroll " + velScroll);
-                    velScrollNext = (double) ac.getVelocityList().get(index - 1) * -0.0022;
+                    velScrollNext = (double) ac.getHeightList().get(index - 1) * -2e-5;
+                    //velScrollNext = (double) ac.getVelocityList().get(index - 1) * -0.0022;
                     //System.out.println("VelScroll " + velScrollNext);
                     velScrollFinal += velScroll - velScrollNext;
                     index++;
                 }
                 //velScroll = (double) ac.getVelocityList().get(index) * -0.0022; //To będzie nasza wartość początkowa
                 Platform.runLater(() -> {
-                            timeline = new Timeline(
-                                    new KeyFrame(Duration.seconds(1),
-                                            new KeyValue(scrollPane.vvalueProperty(), velScrollFinal)));
-                            //timeline.setCycleCount(Animation.INDEFINITE);
-                            //scroll += scrollAddLow;
-                            System.out.println(velScrollFinal);
-                            if (velScrollFinal >= 1) {
-                                timeline.stop();
-                                System.out.println("you did it you sick fuck");
-                            }
-                            timeline.play();
+                    if (!((double) ac.getHeightList().get(index - 1) <= -(double) ac.getVelocityList().get(index - 1))) {
 
-                        }
-                );
+                        timeline = new Timeline(
+                                new KeyFrame(Duration.seconds(0.1),
+                                        new KeyValue(scrollPane.vvalueProperty(), velScrollFinal)));
+                        //timeline.setCycleCount(Animation.INDEFINITE);
+                        //scroll += scrollAddLow;
+                        System.out.println(velScrollFinal);
+
+                        timeline.play();
+
+                    } else {
+                        timeline.stop();
+                        timer.cancel();
+                        System.out.println("you did it you sick fuck");
+                    }
+                });
             }
         };
 
