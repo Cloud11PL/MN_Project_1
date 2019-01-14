@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -26,22 +27,36 @@
             <Insets top="20.0" />
          </VBox.margin>
          <children>
-            <Button fx:id="wypierdol" layoutX="34.0" layoutY="151.0" mnemonicParsing="false" onAction="#wyjeb" text="Button" />
-            <Button fx:id="startScroll" layoutX="154.0" layoutY="151.0" mnemonicParsing="false" onAction="#fuckingjava" text="Button" />
-            <Button fx:id="btn5" layoutX="250.0" layoutY="151.0" mnemonicParsing="false" onAction="#changeTo5" text="-5" />
-            <Button fx:id="btn10" layoutX="289.0" layoutY="151.0" mnemonicParsing="false" onAction="#changeTo10" text="-10" />
-            <Button fx:id="btn15" layoutX="335.0" layoutY="151.0" mnemonicParsing="false" onAction="#changeTo15" text="-15" />
-            <Button fx:id="btn0" layoutX="379.0" layoutY="151.0" mnemonicParsing="false" onAction="#changeTo0" text="0" />
+            <Button fx:id="startScroll" layoutX="47.0" layoutY="151.0" mnemonicParsing="false" onAction="#fuckingjava" text="Start" />
          </children>
       </Pane>
-      <ScrollPane fx:id="scrollPane" prefHeight="900.0" prefWidth="500.0">
-         <content>
-            <ImageView fx:id="scrollImage" fitHeight="3125.0" fitWidth="500.0" pickOnBounds="true">
-               <image>
-                  <Image url="@assets/scroll.png" />
-               </image>
-            </ImageView>
-         </content>
-      </ScrollPane>
+      <StackPane prefHeight="900.0" prefWidth="500.0">
+         <children>
+            <ScrollPane fx:id="scrollPane" prefHeight="900.0" prefWidth="500.0">
+               <content>
+                  <ImageView fx:id="scrollImage" fitHeight="3125.0" fitWidth="500.0" pickOnBounds="true">
+                     <image>
+                        <Image url="file:/C:/Dev%20Projects/MN_Project_1/src/UI/assets/scroll_long.png" />
+                     </image>
+                  </ImageView>
+               </content>
+            </ScrollPane>
+            <Pane prefHeight="504.0" prefWidth="500.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Dev%20Projects/MN_Project_1/src/UI/assets/rocket.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <StackPane.margin>
+                  <Insets left="193.0" top="230.0" />
+               </StackPane.margin>
+            </Pane>
+         </children>
+      </StackPane>
    </children>
 </VBox>

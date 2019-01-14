@@ -51,6 +51,7 @@ public class Controller {
     double velScrollFinal = 0;
     double blowJob = 0;
     MotherClass mc = new MotherClass();
+    int counter = 0;
 
     @FXML
     private Button btn5;
