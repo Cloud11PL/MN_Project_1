@@ -26,6 +26,22 @@ import javafx.util.Duration;
 
 public class Controller {
 
+
+    private int x = 5;
+    private Animation animation;
+    private double scrollAddHigh = 0.1;
+    private double scrollAddLow = 0.001;
+    private double scroll = scrollAddLow + 0;
+    private Timeline timeline;
+
+    private final Timer timer = new Timer();
+    private int index = 0;
+    private double velScroll = 0;
+    private double velScrollNext = 0;
+    private double velScrollFinal = 0;
+    private double blowJob = 0;
+    private MotherClass mc = new MotherClass();
+
     @FXML
     private ResourceBundle resources;
 
@@ -50,9 +66,7 @@ public class Controller {
     double velScrollNext = 0;
     double velScrollFinal = 0;
     double blowJob = 0;
-    int counter = 0;
     MotherClass mc = new MotherClass();
-
 
     @FXML
     private Button btn5;
@@ -122,7 +136,7 @@ public class Controller {
     @FXML
     void initialize() {
         assert scrollImage != null : "fx:id=\"scrollImage\" was not injected: check your FXML file 'game.fxml'.";
-        assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'game.fxml'.";
+        assert scrollPane  != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'game.fxml'.";
         /*
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
