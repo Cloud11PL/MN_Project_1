@@ -30,6 +30,7 @@
             <Button fx:id="startScroll" layoutX="47.0" layoutY="151.0" mnemonicParsing="false" onAction="#fuckingjava" text="Start" />
          </children>
       </Pane>
+<<<<<<< Updated upstream
       <StackPane prefHeight="900.0" prefWidth="500.0">
          <children>
             <ScrollPane fx:id="scrollPane" prefHeight="900.0" prefWidth="500.0">
@@ -58,5 +59,16 @@
             </Pane>
          </children>
       </StackPane>
+=======
+      <ScrollPane fx:id="scrollPane" prefHeight="900.0" prefWidth="500.0">
+         <content>
+            <ImageView fx:id="scrollImage" fitHeight="3125.0" fitWidth="500.0" pickOnBounds="true">
+               <image>
+                  <Image url="@assets/scroll.png" />
+               </image>
+            </ImageView>
+         </content>
+      </ScrollPane>
+>>>>>>> Stashed changes
    </children>
 </VBox>
