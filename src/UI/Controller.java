@@ -26,6 +26,22 @@ import javafx.util.Duration;
 
 public class Controller {
 
+
+    private int x = 5;
+    private Animation animation;
+    private double scrollAddHigh = 0.1;
+    private double scrollAddLow = 0.001;
+    private double scroll = scrollAddLow + 0;
+    private Timeline timeline;
+
+    private final Timer timer = new Timer();
+    private int index = 0;
+    private double velScroll = 0;
+    private double velScrollNext = 0;
+    private double velScrollFinal = 0;
+    private double blowJob = 0;
+    private MotherClass mc = new MotherClass();
+
     @FXML
     private ResourceBundle resources;
 
@@ -37,21 +53,6 @@ public class Controller {
 
     @FXML
     private ScrollPane scrollPane;
-
-    int x = 5;
-    Animation animation;
-    double scrollAddHigh = 0.1;
-    double scrollAddLow = 0.001;
-    double scroll = scrollAddLow + 0;
-    Timeline timeline;
-    final Timer timer = new Timer();
-    int index = 0;
-    double velScroll = 0;
-    double velScrollNext = 0;
-    double velScrollFinal = 0;
-    double blowJob = 0;
-    MotherClass mc = new MotherClass();
-
     @FXML
     private Button btn5;
 
@@ -89,7 +90,7 @@ public class Controller {
 
     @FXML
     private void keyPressed(KeyEvent keyEvent) {
-        if(blowJob <=0 &&blowJob >=- 16.5) {
+        if (blowJob <= 0 && blowJob >= -16.5) {
             switch (keyEvent.getCode()) {
                 case D:
                     blowJob += -0.5;
@@ -98,10 +99,10 @@ public class Controller {
                     blowJob -= -0.5;
                     break;
             }
-            if(blowJob >0){
-                blowJob =0;
+            if (blowJob > 0) {
+                blowJob = 0;
             }
-            if (blowJob < -16.5){
+            if (blowJob < -16.5) {
                 blowJob = -16.5;
             }
         }
@@ -120,7 +121,7 @@ public class Controller {
     @FXML
     void initialize() {
         assert scrollImage != null : "fx:id=\"scrollImage\" was not injected: check your FXML file 'game.fxml'.";
-        assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'game.fxml'.";
+        assert scrollPane  != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'game.fxml'.";
         /*
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -182,10 +183,10 @@ public class Controller {
                             //timeline.setCycleCount(Animation.INDEFINITE);
                             //scroll += scrollAddLow;
                             System.out.println(velScrollFinal);
-                    if(velScrollFinal >= 1){
-                        timeline.stop();
-                        System.out.println("you did it you sick fuck");
-                    }
+                            if (velScrollFinal >= 1) {
+                                timeline.stop();
+                                System.out.println("you did it you sick fuck");
+                            }
                             timeline.play();
 
                         }
