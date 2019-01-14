@@ -8,6 +8,7 @@ public class Mass implements Overkill{
         if(mass <= 1000){
             mass = prevMass;
         }
+        System.out.println("mass: " + mass);
         return mass;
     }
 }
