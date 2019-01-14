@@ -50,7 +50,9 @@ public class Controller {
     double velScrollNext = 0;
     double velScrollFinal = 0;
     double blowJob = 0;
+    int counter = 0;
     MotherClass mc = new MotherClass();
+
 
     @FXML
     private Button btn5;
@@ -89,7 +91,7 @@ public class Controller {
 
     @FXML
     private void keyPressed(KeyEvent keyEvent) {
-        if(blowJob <=0 &&blowJob >=- 16.5) {
+        if (blowJob <= 0 && blowJob >= -16.5) {
             switch (keyEvent.getCode()) {
                 case D:
                     blowJob += -0.5;
@@ -98,10 +100,10 @@ public class Controller {
                     blowJob -= -0.5;
                     break;
             }
-            if(blowJob >0){
-                blowJob =0;
+            if (blowJob > 0) {
+                blowJob = 0;
             }
-            if (blowJob < -16.5){
+            if (blowJob < -16.5) {
                 blowJob = -16.5;
             }
         }
@@ -125,7 +127,9 @@ public class Controller {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         */
-        scrollPane.setBorder(null);
+        scrollPane.setStyle("-fx-background-color:transparent;");
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
 
     }
@@ -145,11 +149,21 @@ public class Controller {
     void fuckingjava(ActionEvent event) {
         ArrayClass ac = new ArrayClass();
 
+        boolean XD = (counter % 10) == 0;
         TimerTask task = new TimerTask() {
             public void run() {
                 //System.out.println("XD");
-                mc.doImportantStuff(blowJob, ac);
-                System.out.println(blowJob);
+                double notBlowJob = 0;
+
+                if(XD){
+                    notBlowJob = blowJob;
+
+                }
+                counter++;
+
+
+                mc.doImportantStuff(notBlowJob, ac);
+                System.out.println(notBlowJob);
                 /*
                 Potrzeba nowej i wcześniejszej bo skacze w chuj
                  */
@@ -177,19 +191,19 @@ public class Controller {
                 //velScroll = (double) ac.getVelocityList().get(index) * -0.0022; //To będzie nasza wartość początkowa
                 Platform.runLater(() -> {
                             timeline = new Timeline(
-                                    new KeyFrame(Duration.seconds(1),
+                                    new KeyFrame(Duration.seconds(0.1),
                                             new KeyValue(scrollPane.vvalueProperty(), velScrollFinal)));
                             //timeline.setCycleCount(Animation.INDEFINITE);
                             //scroll += scrollAddLow;
                             System.out.println(velScrollFinal);
-                    if(velScrollFinal >= 1){
-                        timeline.stop();
-                        System.out.println("you did it you sick fuck");
-                    }
+                            if (velScrollFinal >= 1) {
+                                timeline.stop();
+                                System.out.println("you did it you sick fuck");
+                            }
                             timeline.play();
-
                         }
                 );
+                //counter++;
             }
         };
 
