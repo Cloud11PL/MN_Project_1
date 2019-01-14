@@ -11,7 +11,6 @@ import java.util.TimerTask;
 
 import MathMethods.ArrayClass;
 import MathMethods.MotherClass;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -20,7 +19,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 
@@ -49,7 +47,6 @@ public class Controller {
     private double velScrollFinal = 0;
     private double blowJob = 0;
     private MotherClass mc = new MotherClass();
-    private int counter = 0;
     private double mass = 0;
 
 
@@ -161,7 +158,11 @@ public class Controller {
                     } else {
                         timeline.stop();
                         timer.cancel();
-                        System.out.println("you did it you sick fuck");
+                        if(-(double) ac.getVelocityList().get(index - 1) > 0 && -(double) ac.getVelocityList().get(index - 1) <=2) {
+                            System.out.println("you did it you sick fuck");
+                        } else {
+                            System.out.println("You fucked up boi");
+                        }
                     }
                     if(velScrollFinal < 0){
                         timeline.stop();
@@ -173,7 +174,6 @@ public class Controller {
         };
 
         timer.scheduleAtFixedRate(task, 100, 100);
-
 
     }
 }
