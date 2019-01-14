@@ -38,74 +38,41 @@ public class Controller {
     @FXML
     private ScrollPane scrollPane;
 
-    int x = 5;
-    Animation animation;
-    double scrollAddHigh = 0.1;
-    double scrollAddLow = 0.001;
-    double scroll = scrollAddLow + 0;
-    Timeline timeline;
-    final Timer timer = new Timer();
-    int index = 0;
-    double velScroll = 0;
-    double velScrollNext = 0;
-    double velScrollFinal = 0;
-    double blowJob = 0;
-    MotherClass mc = new MotherClass();
-    int counter = 0;
+    private double scrollAddHigh = 0.1;
+    private double scrollAddLow = 0.001;
+    private double scroll = scrollAddLow + 0;
+    private Timeline timeline;
+    private final Timer timer = new Timer();
+    private int index = 0;
+    private double velScroll = 0;
+    private double velScrollNext = 0;
+    private double velScrollFinal = 0;
+    private double blowJob = 0;
+    private MotherClass mc = new MotherClass();
+    private int counter = 0;
+    private double mass = 0;
 
-    @FXML
-    private Button btn5;
-
-    @FXML
-    private Button btn10;
-
-    @FXML
-    private Button btn15;
-
-    @FXML
-    private Button btn0;
-
-
-    @FXML
-    void changeTo0(ActionEvent event) {
-        blowJob = 0;
-    }
-
-    @FXML
-    void changeTo10(ActionEvent event) {
-        blowJob = -10;
-    }
-
-    @FXML
-    void changeTo15(ActionEvent event) {
-        blowJob = -15;
-
-    }
-
-    @FXML
-    void changeTo5(ActionEvent event) {
-        blowJob = -5;
-
-    }
 
     @FXML
     private void keyPressed(KeyEvent keyEvent) {
-        if (blowJob <= 0 && blowJob >= -16.5) {
-            switch (keyEvent.getCode()) {
-                case D:
-                    blowJob += -0.5;
-                    break;
-                case A:
-                    blowJob -= -0.5;
-                    break;
+
+            if (blowJob <= 0 && blowJob >= -16.5) {
+                switch (keyEvent.getCode()) {
+                    case D:
+                        blowJob += -0.5;
+                        break;
+                    case A:
+                        blowJob -= -0.5;
+                        break;
+                }
+                if (blowJob > 0) {
+                    blowJob = 0;
+                }
+                if (blowJob < -16.5) {
+                    blowJob = -16.5;
+                }
             }
-            if (blowJob > 0) {
-                blowJob = 0;
-            }
-            if (blowJob < -16.5) {
-                blowJob = -16.5;
-            }
-        }
+
 
     }
 
@@ -145,20 +112,17 @@ public class Controller {
     void fuckingjava(ActionEvent event) {
         ArrayClass ac = new ArrayClass();
 
-        boolean XD = (counter % 10) == 0;
         TimerTask task = new TimerTask() {
             public void run() {
-                //System.out.println("XD");
-
-                double notBlowJob = 0;
-                if(XD){
-                    notBlowJob = blowJob;
-
-                counter++;
+                System.out.println(mass + " After burn mass");
+                if (mass <= -blowJob+1000.14) {
+                    blowJob = 0;
                 }
 
-                mc.doImportantStuff(notBlowJob, ac);
-                System.out.println(notBlowJob);
+                mc.doImportantStuff(blowJob, ac);
+                System.out.println(blowJob);
+                mass = (double) ac.getMassList().get(index);
+
                 /*
                 Potrzeba nowej i wcześniejszej bo skacze w chuj
                  */
@@ -193,10 +157,16 @@ public class Controller {
                                         new KeyValue(scrollPane.vvalueProperty(), velScrollFinal)));
                         System.out.println(velScrollFinal);
                         timeline.play();
+
                     } else {
                         timeline.stop();
                         timer.cancel();
                         System.out.println("you did it you sick fuck");
+                    }
+                    if(velScrollFinal < 0){
+                        timeline.stop();
+                        timer.cancel();
+                        System.out.println("Bitch where de fukk u think u goin");
                     }
                 });
             }
