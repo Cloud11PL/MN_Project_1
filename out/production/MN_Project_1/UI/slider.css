@@ -1,0 +1,15 @@
+.slider .thumb {
+    -fx-background-image :url("assets/grab_smol.png");
+    -fx-pref-height: 81;
+    -fx-pref-width: 42;
+    -fx-background-color:transparent;
+    -fx-padding: 40 21;
+    -fx-scale-x: 0.4;
+    -fx-scale-y: 0.4;
+    -fx-background-position: center;
+}
+
+.track {
+    -fx-background-color: #333333;
+
+}
