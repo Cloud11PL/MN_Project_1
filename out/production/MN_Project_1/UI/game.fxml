@@ -38,9 +38,9 @@
             </ScrollPane>
             <Pane>
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="189.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rocketImage" fitHeight="220.0" fitWidth="137.0" layoutX="186.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Dev%20Projects/MN_Project_1/src/UI/assets/rocket.png" />
+                        <Image url="file:/C:/Dev%20Projects/MN_Project_1/src/UI/assets/rocket_none.png" />
                      </image>
                   </ImageView>
                </children>
