@@ -180,6 +180,7 @@ public class Controller {
                 }
                 Platform.runLater(() -> {
                     if (!((double) ac.getHeightList().get(index - 1) <= -(double) ac.getVelocityList().get(index - 1))) {
+                        setFire();
                         timeline = new Timeline(
                                 new KeyFrame(Duration.seconds(0.1),
                                         new KeyValue(scrollPane.vvalueProperty(), velScrollFinal)));
@@ -205,7 +206,6 @@ public class Controller {
                         startScroll.setDisable(false);
                         showWenOuterspace();
                     }
-                    setFire();
                 });
             }
         };
@@ -226,7 +226,7 @@ public class Controller {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("You win!");
         alert.setHeaderText("You survived the moon landing!");
-        alert.setContentText("You have " + (mass-1000) +" fuel left and your final velocity was " + labelForVel + ".");
+        alert.setContentText("You have " + round((mass-1000),2) +" fuel left and your final velocity was " + round(labelForVel,2) + ".");
 
         alert.showAndWait();
     }
@@ -235,7 +235,7 @@ public class Controller {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Game over!");
         alert.setHeaderText("You didn't survive the moon landing!");
-        alert.setContentText("Your final velocity was " + labelForVel + ".");
+        alert.setContentText("Your final velocity was " + round(labelForVel,2) + ".");
 
         alert.showAndWait();
     }
@@ -244,40 +244,33 @@ public class Controller {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Where did you go?");
         alert.setHeaderText("You were outer space!");
-        alert.setContentText("Your final velocity was " + labelForVel + " and you had " + (mass-1000) + " fuel left.");
+        alert.setContentText("Your final velocity was " + round(labelForVel,2) + " and you had " + round((mass-1000),2) + " fuel left.");
 
         alert.showAndWait();
     }
 
     public void setFire(){
         Platform.runLater(() -> {
-            if(blowJob <= 0 && blowJob > -6){
-                rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket.png")));
+            if(blowJob == 0){
+                rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_none.png")));
                 rocketImage.setCache(true);
                 rocketImage.setFitHeight(220);
                 rocketImage.setFitWidth(137);
-                System.out.println("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-            } else if (blowJob <= -6){
+            } else if(blowJob < 0 && blowJob >= -6){
                 rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_1.png")));
                 rocketImage.setCache(true);
                 rocketImage.setFitHeight(220);
                 rocketImage.setFitWidth(137);
-                System.out.println("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-
             } else if (blowJob < -6 && blowJob > -10 ){
                 rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_2.png")));
                 rocketImage.setCache(true);
                 rocketImage.setFitHeight(220);
                 rocketImage.setFitWidth(137);
-                System.out.println("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-
             } else {
                 rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_3.png")));
                 rocketImage.setCache(true);
                 rocketImage.setFitHeight(220);
                 rocketImage.setFitWidth(137);
-                System.out.println("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-
             }
         });
     }
