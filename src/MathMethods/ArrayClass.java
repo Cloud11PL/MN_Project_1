@@ -46,10 +46,14 @@ public class ArrayClass implements UpdateArrays {
 
     public void saveToFile() {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("Velocity"));
-            BufferedWriter bw1 = new BufferedWriter(new FileWriter("Height"));
-            BufferedWriter bw2 = new BufferedWriter(new FileWriter("Mass"));
-            BufferedWriter bw3 = new BufferedWriter(new FileWriter("Acceleration"));
+            File velo = new File("C:\\Users\\uaxau\\IdeaProjects\\LontkaSexiBoi\\MN_Project_1\\src\\UI\\Velocity.txt");
+            File heig = new File("C:\\Users\\uaxau\\IdeaProjects\\LontkaSexiBoi\\MN_Project_1\\src\\UI\\Height.txt");
+            File mass = new File("C:\\Users\\uaxau\\IdeaProjects\\LontkaSexiBoi\\MN_Project_1\\src\\UI\\Mass.txt");
+            File acce= new File("C:\\Users\\uaxau\\IdeaProjects\\LontkaSexiBoi\\MN_Project_1\\src\\UI\\Acceleration.txt");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(velo));
+            BufferedWriter bw1 = new BufferedWriter(new FileWriter(heig));
+            BufferedWriter bw2 = new BufferedWriter(new FileWriter(mass));
+            BufferedWriter bw3 = new BufferedWriter(new FileWriter(acce));
 
             for (int i = 0; i < velocityList.size(); i++) {
                 bw.write((double) velocityList.get(i) + "\n");

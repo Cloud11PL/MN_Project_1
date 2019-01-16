@@ -161,8 +161,10 @@ public class Controller {
     void saveData() {
         if(series.getData().size() == 0){
             System.out.println("Not enough data");
+
         } else {
             System.out.println("Print data");
+            ac.saveToFile();
         }
     }
 
