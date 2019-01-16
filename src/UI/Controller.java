@@ -80,6 +80,7 @@ public class Controller {
     private double labelForHeight = 0;
     private double labelForVel = 0;
     private ArrayClass ac = new ArrayClass();
+    private TimerTask task;
     XYChart.Series series = new XYChart.Series();
 
 
@@ -88,6 +89,15 @@ public class Controller {
 
         if (fuelOutput <= 0 && fuelOutput >= -16.5) {
             switch (keyEvent.getCode()) {
+                case F1:
+                    timer = new Timer();
+                    go();
+                    timer.scheduleAtFixedRate(task, 100, 100);
+
+                case ESCAPE:
+                    timeline.pause();
+                    timer.cancel();
+                    break;
                 case D:
                     fuelOutput += -0.5;
                     break;
@@ -169,9 +179,13 @@ public class Controller {
 
     @FXML
     void startTimer(ActionEvent event) {
+        go();
+    }
+
+    private void go(){
 
         startScroll.setDisable(true);
-        TimerTask task = new TimerTask() {
+        task = new TimerTask() {
             public void run() {
                 System.out.println(mass + " After burn mass");
                 if (mass <= -fuelOutput + 1000.14) {
