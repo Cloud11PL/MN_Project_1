@@ -80,7 +80,7 @@ public class Controller {
     private double scrollAddLow = 0.001;
     private double scroll = scrollAddLow + 0;
     private Timeline timeline;
-    private final Timer timer = new Timer();
+    private Timer timer = new Timer();
     private int index = 0;
     private double velScroll = 0;
     private double velScrollNext = 0;
@@ -90,6 +90,7 @@ public class Controller {
     private double mass = 0;
     private double labelForHeight = 0;
     private double labelForVel = 0;
+    private ArrayClass ac = new ArrayClass();
     XYChart.Series series = new XYChart.Series();
 
 
@@ -116,6 +117,20 @@ public class Controller {
 
     @FXML
     void resetGame(ActionEvent event) {
+        timer = new Timer();
+        ac.cleanArraysAreImportantForTheEnvironment();
+        mc.setAcc(-1.63);
+        mc.setH(50000);
+        mc.setM(2730.14);
+        mc.setV(-150);
+        index =0;
+        blowJob = 0;
+        labelVel.setText("0");
+        labelH.setText("0");
+        startScroll.setDisable(false);
+        if(!(series.getData().isEmpty())) {
+            series.getData().clear();
+        }
 
     }
 
@@ -173,7 +188,7 @@ public class Controller {
 
     @FXML
     void fuckingjava(ActionEvent event) {
-        ArrayClass ac = new ArrayClass();
+
         startScroll.setDisable(true);
         TimerTask task = new TimerTask() {
             public void run() {
@@ -194,9 +209,7 @@ public class Controller {
                     velScrollNext = (double) ac.getHeightList().get(index - 1) * -2e-5;
                     velScrollFinal += velScroll - velScrollNext;
                     index++;
-                    Platform.runLater(() -> {
-                        series.getData().add(new XYChart.Data(labelForHeight,Math.abs(labelForVel)));
-                    });
+                    Platform.runLater(() -> series.getData().add(new XYChart.Data(labelForHeight,Math.abs(labelForVel))));
                 }
                 Platform.runLater(() -> {
                     if (!((double) ac.getHeightList().get(index - 1) <= -(double) ac.getVelocityList().get(index - 1))) {
@@ -213,8 +226,10 @@ public class Controller {
                         timer.cancel();
                         if(-(double) ac.getVelocityList().get(index - 1) > 0 && -(double) ac.getVelocityList().get(index - 1) <=2) {
                             System.out.println("you did it you sick fuck");
+                            startScroll.setDisable(false);
                         } else {
                             System.out.println("You fucked up boi");
+                            startScroll.setDisable(false);
                         }
                     }
                     if (velScrollFinal < 0) {

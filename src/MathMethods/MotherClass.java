@@ -15,6 +15,22 @@ public class MotherClass {
     private double m = massFuel0 + 1000;
     private double acc = accelerate.variable(m, fuelBurn0);
 
+    public void setV(double v) {
+        this.v = v;
+    }
+
+    public void setH(double h) {
+        this.h = h;
+    }
+
+    public void setM(double m) {
+        this.m = m;
+    }
+
+    public void setAcc(double acc) {
+        this.acc = acc;
+    }
+
     public void doImportantStuff(double fuelBurn, ArrayClass ac) {
 
         ac.update(h,m,v,acc);
@@ -30,17 +46,4 @@ public class MotherClass {
         acc = accNew;
 
     }
-
-
-
-//
-//    do {
-//    } while (h = 0) {
-//        if (v =< 2){
-//            System.out.println("Win");
-//        } else {
-//            System.out.println("Loose");
-//        }
-//    }
-//
 }

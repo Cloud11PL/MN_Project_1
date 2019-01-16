@@ -24,6 +24,13 @@ public class ArrayClass implements UpdateArrays {
         return massList;
     }
 
+    public void cleanArraysAreImportantForTheEnvironment(){
+        velocityList.clear();
+        heightList.clear();
+        accelerateList.clear();
+        massList.clear();
+    }
+
     @Override
     public void update(double h, double m, double v, double acc) {
         velocityList.add(v);
