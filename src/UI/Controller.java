@@ -74,7 +74,7 @@ public class Controller {
     private double velScroll = 0;
     private double velScrollNext = 0;
     private double velScrollFinal = 0;
-    private double blowJob = 0;
+    private double fuelOutput = 0;
     private MotherClass mc = new MotherClass();
     private double mass = 0;
     private double labelForHeight = 0;
@@ -86,20 +86,20 @@ public class Controller {
     @FXML
     private void keyPressed(KeyEvent keyEvent) {
 
-        if (blowJob <= 0 && blowJob >= -16.5) {
+        if (fuelOutput <= 0 && fuelOutput >= -16.5) {
             switch (keyEvent.getCode()) {
                 case D:
-                    blowJob += -0.5;
+                    fuelOutput += -0.5;
                     break;
                 case A:
-                    blowJob -= -0.5;
+                    fuelOutput -= -0.5;
                     break;
             }
-            if (blowJob > 0) {
-                blowJob = 0;
+            if (fuelOutput > 0) {
+                fuelOutput = 0;
             }
-            if (blowJob < -16.5) {
-                blowJob = -16.5;
+            if (fuelOutput < -16.5) {
+                fuelOutput = -16.5;
             }
         }
     }
@@ -113,7 +113,7 @@ public class Controller {
         mc.setM(2730.14);
         mc.setV(-150);
         index =0;
-        blowJob = 0;
+        fuelOutput = 0;
         labelVel.setText("0");
         labelH.setText("0");
         startScroll.setDisable(false);
@@ -167,17 +167,17 @@ public class Controller {
     }
 
     @FXML
-    void fuckingjava(ActionEvent event) {
+    void startTimer(ActionEvent event) {
 
         startScroll.setDisable(true);
         TimerTask task = new TimerTask() {
             public void run() {
                 System.out.println(mass + " After burn mass");
-                if (mass <= -blowJob + 1000.14) {
-                    blowJob = 0;
+                if (mass <= -fuelOutput + 1000.14) {
+                    fuelOutput = 0;
                 }
-                mc.doImportantStuff(blowJob, ac);
-                System.out.println(blowJob);
+                mc.doImportantStuff(fuelOutput, ac);
+                System.out.println(fuelOutput);
                 mass = (double) ac.getMassList().get(index);
                 if (index == 0) {
                     velScrollFinal = 0;
@@ -264,17 +264,17 @@ public class Controller {
 
     public void setFire(){
         Platform.runLater(() -> {
-            if(blowJob == 0){
+            if(fuelOutput == 0){
                 rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_none.png")));
                 rocketImage.setCache(true);
                 rocketImage.setFitHeight(220);
                 rocketImage.setFitWidth(137);
-            } else if(blowJob < 0 && blowJob >= -6){
+            } else if(fuelOutput < 0 && fuelOutput >= -6){
                 rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_1.png")));
                 rocketImage.setCache(true);
                 rocketImage.setFitHeight(220);
                 rocketImage.setFitWidth(137);
-            } else if (blowJob < -6 && blowJob > -10 ){
+            } else if (fuelOutput < -6 && fuelOutput > -10 ){
                 rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_2.png")));
                 rocketImage.setCache(true);
                 rocketImage.setFitHeight(220);

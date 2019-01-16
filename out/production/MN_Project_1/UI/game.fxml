@@ -74,7 +74,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="startScroll" mnemonicParsing="false" onAction="#fuckingjava" prefHeight="51.0" prefWidth="132.0" style="-fx-background-color: transparent;">
+                        <Button fx:id="startScroll" mnemonicParsing="false" onAction="#startTimer" prefHeight="51.0" prefWidth="132.0" style="-fx-background-color: transparent;">
                            <graphic>
                               <ImageView fitHeight="51.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -93,7 +93,14 @@
                   </VBox>
                   <VBox prefHeight="228.0" prefWidth="334.0">
                      <children>
-                        <Button fx:id="showGraph" mnemonicParsing="false" onAction="#showGraph" text="Button" />
+                        <Button fx:id="showGraph" mnemonicParsing="false" onAction="#showGraph" prefHeight="37.0" prefWidth="89.0" style="-fx-background-color: white;" text="Graph">
+                           <font>
+                              <Font name="OCR A Extended" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="12.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
                         <VBox prefHeight="128.0" prefWidth="334.0">
                            <children>
                               <HBox prefHeight="132.0" prefWidth="334.0">
@@ -120,7 +127,7 @@
                                                 <Insets />
                                              </opaqueInsets>
                                              <VBox.margin>
-                                                <Insets top="30.0" />
+                                                <Insets top="23.0" />
                                              </VBox.margin>
                                           </HBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
