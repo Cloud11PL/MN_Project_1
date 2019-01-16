@@ -19,17 +19,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -62,7 +59,6 @@ public class Controller {
     @FXML
     private Button btn_reset;
 
-
     @FXML
     private Button showGraph;
 
@@ -70,15 +66,8 @@ public class Controller {
     private Button startScroll;
 
     @FXML
-    private ScatterChart<NumberAxis, NumberAxis> chart;
+    private ImageView rocketImage;
 
-    @FXML
-    private Button saveChartBttn;
-
-
-    private double scrollAddHigh = 0.1;
-    private double scrollAddLow = 0.001;
-    private double scroll = scrollAddLow + 0;
     private Timeline timeline;
     private Timer timer = new Timer();
     private int index = 0;
@@ -152,21 +141,12 @@ public class Controller {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("graph.fxml"));
             Parent root2 = loader.load();
             GraphController measurement = loader.getController();
-
             Platform.runLater(() -> {
                 measurement.getChart().getData().add(series);
-            });
-            /*
-            measurement.setCustomerSelectCallback(customer -> {
-                Platform.runLater(() -> {
-                    customer.getData().add(series);
+                measurement.getSaveChartBttn().setDisable(false);
+                measurement.getSaveChartBttn().setOnMouseClicked(e -> {
+                    saveData();
                 });
-            });
-            */
-
-            
-            measurement.setCustomerSelectCallbackBttn(customer -> {
-                System.out.println(customer);
             });
             Stage stage2 = new Stage();
             stage2.setTitle("Landing Graph");
@@ -177,13 +157,13 @@ public class Controller {
 
         }
     }
-    /*
-    KOMUNIKATY O WYGRANEJ I PRZEGRANEJ
-     */
 
-    @FXML
-    void saveData(ActionEvent event) {
-        System.out.println("XD");
+    void saveData() {
+        if(series.getData().size() == 0){
+            System.out.println("Not enough data");
+        } else {
+            System.out.println("Print data");
+        }
     }
 
     @FXML
@@ -225,19 +205,20 @@ public class Controller {
                         timeline.stop();
                         timer.cancel();
                         if(-(double) ac.getVelocityList().get(index - 1) > 0 && -(double) ac.getVelocityList().get(index - 1) <=2) {
-                            System.out.println("you did it you sick fuck");
+                            showWin();
                             startScroll.setDisable(false);
                         } else {
-                            System.out.println("You fucked up boi");
+                            showLoose();
                             startScroll.setDisable(false);
                         }
                     }
                     if (velScrollFinal < 0) {
                         timeline.stop();
                         timer.cancel();
-                        System.out.println("Bitch where de fukk u think u goin");
                         startScroll.setDisable(false);
+                        showWenOuterspace();
                     }
+                    setFire();
                 });
             }
         };
@@ -248,11 +229,70 @@ public class Controller {
 
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
-
         long factor = (long) Math.pow(10, places);
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
+    }
+
+    public void showWin(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("You win!");
+        alert.setHeaderText("You survived the moon landing!");
+        alert.setContentText("You have " + (mass-1000) +" fuel left and your final velocity was " + labelForVel + ".");
+
+        alert.showAndWait();
+    }
+
+    public void showLoose(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game over!");
+        alert.setHeaderText("You didn't survive the moon landing!");
+        alert.setContentText("Your final velocity was " + labelForVel + ".");
+
+        alert.showAndWait();
+    }
+
+    public void showWenOuterspace(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Where did you go?");
+        alert.setHeaderText("You were outer space!");
+        alert.setContentText("Your final velocity was " + labelForVel + " and you had " + (mass-1000) + " fuel left.");
+
+        alert.showAndWait();
+    }
+
+    public void setFire(){
+        Platform.runLater(() -> {
+            if(blowJob <= 0 && blowJob > -6){
+                rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket.png")));
+                rocketImage.setCache(true);
+                rocketImage.setFitHeight(220);
+                rocketImage.setFitWidth(137);
+                System.out.println("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+            } else if (blowJob <= -6){
+                rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_1.png")));
+                rocketImage.setCache(true);
+                rocketImage.setFitHeight(220);
+                rocketImage.setFitWidth(137);
+                System.out.println("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+
+            } else if (blowJob < -6 && blowJob > -10 ){
+                rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_2.png")));
+                rocketImage.setCache(true);
+                rocketImage.setFitHeight(220);
+                rocketImage.setFitWidth(137);
+                System.out.println("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+
+            } else {
+                rocketImage.setImage(new Image(getClass().getResourceAsStream("assets/rocket_3.png")));
+                rocketImage.setCache(true);
+                rocketImage.setFitHeight(220);
+                rocketImage.setFitWidth(137);
+                System.out.println("XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+
+            }
+        });
     }
 }
 
