@@ -163,6 +163,7 @@ public class Controller {
             System.out.println("Not enough data");
         } else {
             System.out.println("Print data");
+            ac.saveToFile();
         }
     }
 
