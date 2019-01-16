@@ -1,6 +1,7 @@
 package UI;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.control.Button;
@@ -15,21 +16,21 @@ public class GraphController {
     @FXML
     private Button saveChartBttn;
 
-    @FXML
-    void saveData(ActionEvent event) {
-
-    }
+//    @FXML
+//    void saveData(ActionEvent event) {
+//        System.out.println("LOLJESTEMNAINNYMFREDZIE");
+//    }
 
     private String select = "XD";
     private Consumer<ScatterChart> customerSelectCallback ;
-    private Consumer<Button> customerSelectCallbackBttn ;
+    private Consumer<Event> customerSelectCallbackBttn ;
 
     public void setCustomerSelectCallback(Consumer<ScatterChart> callback) {
         this.customerSelectCallback = callback ;
     }
 
-    public void setCustomerSelectCallbackBttn(Consumer<Button> button){
-        this.customerSelectCallbackBttn = button;
+    public void setCustomerSelectCallbackBttn(Consumer<Event> event){
+        this.customerSelectCallbackBttn = event;
     }
 
     public String getSelect() {
@@ -38,6 +39,10 @@ public class GraphController {
 
     public void setChart(ScatterChart<Number, Number> chart) {
         this.chart = chart;
+    }
+
+    public Button getSaveChartBttn() {
+        return saveChartBttn;
     }
 
     public ScatterChart<?, ?> getChart() {
