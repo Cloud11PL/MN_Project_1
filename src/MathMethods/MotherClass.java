@@ -20,7 +20,7 @@ public class MotherClass {
 
     /**
      * Setter for velocity used in restarting the simulation
-     * @param v
+     * @param v Velocity
      */
     public void setV(double v) {
         this.v = v;
@@ -28,7 +28,7 @@ public class MotherClass {
 
     /**
      * Setter for height used in restarting the simulation
-     * @param h
+     * @param h Height
      */
 
     public void setH(double h) {
@@ -37,7 +37,7 @@ public class MotherClass {
 
     /**
      * Setter for mass used in restarting the simulation
-     * @param m
+     * @param m Mass
      */
 
     public void setM(double m) {
@@ -46,7 +46,7 @@ public class MotherClass {
 
     /**
      * Setter for acceleration used in restarting the simulation
-     * @param acc
+     * @param acc Acceleration
      */
 
     public void setAcc(double acc) {
@@ -56,8 +56,8 @@ public class MotherClass {
     /**
      * The core method for running the simulation
      * Implements Euler's method as a way to get values from differential equations given
-     * @param fuelBurn
-     * @param ac
+     * @param fuelBurn fuelBurn
+     * @param ac ArrayClass object
      */
 
     public void doImportantStuff(double fuelBurn, ArrayClass ac) {

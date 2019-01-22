@@ -17,7 +17,7 @@ public class ArrayClass implements UpdateArrays {
 
     /**
      * Getter for velocity list
-     * @return
+     * @return velocityList
      */
 
     public ArrayList getVelocityList() {
@@ -26,7 +26,7 @@ public class ArrayClass implements UpdateArrays {
 
     /**
      * Getter for height list
-     * @return
+     * @return heightList
      */
 
     public ArrayList getHeightList() {
@@ -35,7 +35,7 @@ public class ArrayClass implements UpdateArrays {
 
     /**
      * Getter for acceleration list
-     * @return
+     * @return accelerateList
      */
 
     public ArrayList getAccelerateList() {
@@ -44,7 +44,7 @@ public class ArrayClass implements UpdateArrays {
 
     /**
      * Getter for mass list
-     * @return
+     * @return massList
      */
 
     public ArrayList getMassList() {
@@ -64,10 +64,10 @@ public class ArrayClass implements UpdateArrays {
 
     /**
      * A method implemented from UpdateArrays interface, is invoked when the simulation is running and saves the calculated data
-     * @param h
-     * @param m
-     * @param v
-     * @param acc
+     * @param h Height
+     * @param m Mass
+     * @param v Velocity
+     * @param acc Acceleration
      */
 
     @Override

@@ -269,9 +269,9 @@ public class Controller {
 
     /**
      * Rounds values to desired places after comma.
-     * @param value
-     * @param places
-     * @return
+     * @param value Double value
+     * @param places Places after comma
+     * @return Rounded value
      */
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
