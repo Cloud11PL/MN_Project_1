@@ -6,27 +6,54 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * A working class containing arrays collecting data and saving them to txt files
+ */
 public class ArrayClass implements UpdateArrays {
     private ArrayList velocityList = new ArrayList();
     private ArrayList heightList = new ArrayList();
     private ArrayList accelerateList = new ArrayList();
     private ArrayList massList = new ArrayList();
 
+    /**
+     * Getter for velocity list
+     * @return
+     */
+
     public ArrayList getVelocityList() {
         return velocityList;
     }
+
+    /**
+     * Getter for height list
+     * @return
+     */
 
     public ArrayList getHeightList() {
         return heightList;
     }
 
+    /**
+     * Getter for acceleration list
+     * @return
+     */
+
     public ArrayList getAccelerateList() {
         return accelerateList;
     }
 
+    /**
+     * Getter for mass list
+     * @return
+     */
+
     public ArrayList getMassList() {
         return massList;
     }
+
+    /**
+     * A method clearing the arrays used in restarting the simulation
+     */
 
     public void cleanArraysAreImportantForTheEnvironment(){
         velocityList.clear();
@@ -35,6 +62,14 @@ public class ArrayClass implements UpdateArrays {
         massList.clear();
     }
 
+    /**
+     * A method implemented from UpdateArrays interface, is invoked when the simulation is running and saves the calculated data
+     * @param h
+     * @param m
+     * @param v
+     * @param acc
+     */
+
     @Override
     public void update(double h, double m, double v, double acc) {
         velocityList.add(v);
@@ -42,6 +77,10 @@ public class ArrayClass implements UpdateArrays {
         accelerateList.add(acc);
         massList.add(m);
     }
+
+    /**
+     * A method for file-saving using BufferedWriter
+     */
 
     public void saveToFile() {
         try {

@@ -1,35 +1,64 @@
 package MathMethods;
 
+/**
+ * Mother Class acting as main source of values.
+ * The differential equations are calculated using Euler's method
+ */
+
 public class MotherClass {
 
-    Overkill mass = new Mass();
-    Overkill height = new Height();
-    Overkill velocity = new Velocity();
-    Overkill accelerate = new Acceleration();
 
-
+    /**
+     * Starting parameters
+     */
     private double v = -150;
     private double h = 50000;
     private double massFuel0 = 1730.14;
-    private double fuelBurn0 = 0;
     private double m = massFuel0 + 1000;
-    private double acc = accelerate.variable(m, fuelBurn0);
+    private double acc = -1.63;
 
+
+    /**
+     * Setter for velocity used in restarting the simulation
+     * @param v
+     */
     public void setV(double v) {
         this.v = v;
     }
+
+    /**
+     * Setter for height used in restarting the simulation
+     * @param h
+     */
 
     public void setH(double h) {
         this.h = h;
     }
 
+    /**
+     * Setter for mass used in restarting the simulation
+     * @param m
+     */
+
     public void setM(double m) {
         this.m = m;
     }
 
+    /**
+     * Setter for acceleration used in restarting the simulation
+     * @param acc
+     */
+
     public void setAcc(double acc) {
         this.acc = acc;
     }
+
+    /**
+     * The core method for running the simulation
+     * Implements Euler's method as a way to get values from differential equations given
+     * @param fuelBurn
+     * @param ac
+     */
 
     public void doImportantStuff(double fuelBurn, ArrayClass ac) {
         ac.update(h,m,v,acc);
