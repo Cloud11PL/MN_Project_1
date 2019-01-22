@@ -5,11 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-
-/*
---module-path "C:\Users\Wojciech\Documents\javafx-sdk-11.0.1\lib" --add-modules=javafx.controls,javafx.fxml,javafx.base,javafx.media,javafx.graphics,javafx.swing,javafx.web --add-exports=javafx.base/com.sun.javafx.event=ALL-UNNAMED
- */
-
 import MathMethods.ArrayClass;
 import MathMethods.MotherClass;
 import javafx.animation.KeyFrame;
@@ -82,21 +77,30 @@ public class Controller {
     private ArrayClass ac = new ArrayClass();
     private TimerTask task;
     XYChart.Series series = new XYChart.Series();
+    private boolean wasPaused = false;
 
-
+    /**
+     * Method checks what type of key was pressed and fires a method attached to this particular key.
+     * A and D keys change fuelOutput's value. F1 and ESC pauses and restarts the simulation.
+     * @param keyEvent
+     */
     @FXML
     private void keyPressed(KeyEvent keyEvent) {
 
         if (fuelOutput <= 0 && fuelOutput >= -16.5) {
             switch (keyEvent.getCode()) {
                 case F1:
-                    timer = new Timer();
-                    go();
-                    timer.scheduleAtFixedRate(task, 100, 100);
-
+                    if(wasPaused){
+                        wasPaused = false;
+                        timer = new Timer();
+                        go();
+                        timer.scheduleAtFixedRate(task, 100, 100);
+                    }
+                    break;
                 case ESCAPE:
                     timeline.pause();
                     timer.cancel();
+                    wasPaused = true;
                     break;
                 case D:
                     fuelOutput += -0.5;
@@ -114,6 +118,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Method assigns original values to parameters such as Acceleration, Height, Mass and Velocity.
+     * It also clears specific UI elements.
+     * @param event
+     */
     @FXML
     void resetGame(ActionEvent event) {
         timer = new Timer();
@@ -145,6 +154,10 @@ public class Controller {
         fuelBar.setProgress(1);
     }
 
+    /**
+     * When Graph button is pressed, showGraph opens a new window with a graph.
+     * @param event
+     */
     @FXML
     void showGraph(ActionEvent event) {
         try {
@@ -168,22 +181,34 @@ public class Controller {
         }
     }
 
+    /**
+     * Checks if there is enough data to save. If so, saveToFile method is called.
+     */
     void saveData() {
         if(series.getData().size() == 0){
-            System.out.println("Not enough data");
+            notEnoughDataAlert();
         } else {
-            System.out.println("Print data");
             ac.saveToFile();
+            dataWasSaved();
         }
     }
 
+    /**
+     * Starts a timer.
+     * @param event
+     */
     @FXML
     void startTimer(ActionEvent event) {
         go();
     }
 
+    /**
+     * This method is a core UI changing method and also the method responsible for calling MotherClass methods.
+     * It calls MotherClass methods and assigns the output to specific variables. Then, the variables are converted to values that change the position of the ScrollPane.
+     * These values are used in the Timeline method.
+     * The 'go' method has implemented win/loose/went outer space logic.
+     */
     private void go(){
-
         startScroll.setDisable(true);
         task = new TimerTask() {
             public void run() {
@@ -242,6 +267,12 @@ public class Controller {
 
     }
 
+    /**
+     * Rounds values to desired places after comma.
+     * @param value
+     * @param places
+     * @return
+     */
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
         long factor = (long) Math.pow(10, places);
@@ -250,6 +281,9 @@ public class Controller {
         return (double) tmp / factor;
     }
 
+    /**
+     * Creates a win alert with a text containing mass and velocity.
+     */
     public void showWin(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("You win!");
@@ -259,6 +293,9 @@ public class Controller {
         alert.showAndWait();
     }
 
+    /**
+     * Creates a loose alert with the velocity upon death.
+     */
     public void showLoose(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Game over!");
@@ -268,6 +305,9 @@ public class Controller {
         alert.showAndWait();
     }
 
+    /**
+     * Creates a went outer space alert.
+     */
     public void showWenOuterspace(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Where did you go?");
@@ -277,6 +317,31 @@ public class Controller {
         alert.showAndWait();
     }
 
+    /**
+     * Creates a 'not enough data' alert.
+     */
+    public void notEnoughDataAlert(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Save unsuccessful");
+        alert.setHeaderText("Save unsuccessful");
+        alert.setContentText("There's no data to save.");
+        alert.showAndWait();
+    }
+
+    /**
+     * Creates a 'not enough data' alert.
+     */
+    public void dataWasSaved(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Save successful");
+        alert.setHeaderText("Save successful");
+        alert.setContentText("Data was saved to the main app folder.");
+        alert.showAndWait();
+    }
+
+    /**
+     * Method manipulating the sprite of the rocket according to the current fuelOutput.
+     */
     public void setFire(){
         Platform.runLater(() -> {
             if(fuelOutput == 0){

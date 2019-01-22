@@ -31,7 +31,7 @@
                <content>
                   <ImageView fx:id="scrollImage" fitHeight="3125.0" fitWidth="500.0" pickOnBounds="true">
                      <image>
-                        <Image url="file:/C:/Dev%20Projects/MN_Project_1/src/UI/assets/scroll_long.png" />
+                        <Image url="@assets/scroll_long.png" />
                      </image>
                   </ImageView>
                </content>
@@ -40,7 +40,7 @@
                <children>
                   <ImageView fx:id="rocketImage" fitHeight="220.0" fitWidth="137.0" layoutX="186.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Dev%20Projects/MN_Project_1/src/UI/assets/rocket_none.png" />
+                        <Image url="@assets/rocket_none.png" />
                      </image>
                   </ImageView>
                </children>
@@ -69,7 +69,7 @@
                            <graphic>
                               <ImageView fitHeight="70.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/C:/Dev%20Projects/MN_Project_1/src/UI/assets/reset_btn.png" />
+                                    <Image url="@assets/reset_btn.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -78,7 +78,7 @@
                            <graphic>
                               <ImageView fitHeight="51.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/C:/Dev%20Projects/MN_Project_1/src/UI/assets/start_btn.png" />
+                                    <Image url="@assets/start_btn.png" />
                                  </image>
                               </ImageView>
                            </graphic>
